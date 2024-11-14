@@ -10,6 +10,10 @@ span{
 a{
 	overflow: hidden;
 	display: block;
+	text-decoration: none;
+	display:flex;
+	justify-content: center;
+	align-items: center;
 }
 p{
 	color:white;
@@ -46,7 +50,9 @@ p{
 	height:20px;
 	display:block;
 	border-radius:10px;
-
+	display:flex;
+	justify-content: center;
+	align-items: center;
 }
 .green{background: green;}
 .brown{background: #964B00;}
@@ -73,9 +79,9 @@ p{
 		<div class="button active" data-color="green" ><div class="green"></div><span>Hazmat</span></div>
 		<div class="button" data-color="blue" ><div class="blue"></div><span>Blue Rad</span></div>
 		<div class="button" data-color="red" ><div class="red"></div><span>Red Rad</span></div>
-		<div class="button" data-color="brown" ><div class="brown"></div><span>Brown Boxes</span></div>
-		<div class="button" data-color="silver" ><div class="silver"></div><span>Silver Boxes</span></div>
-		<div class="button" data-color="white" ><div class="white"></div><span>Clear</span></div>
+		<div class="button" data-color="brown" data-text="B" ><div class="brown">B</div><span>Brown Boxes</span></div>
+		<div class="button" data-color="silver" data-text="S" ><div class="silver">S</div><span>Silver Boxes</span></div>
+		<div class="button" data-color="white" data-text="X" ><div class="white">X</div><span>Clear</span></div>
 		<p>Click a dot to select it.</p>
 		<p>Press delete to remove it.</p>
 		<p>Click off map to deselect.</p>
@@ -88,6 +94,7 @@ p{
 <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js" integrity="sha256-AlTido85uXPlSyyaZNsjJXeCs07eSv3r43kyCVc8ChI=" crossorigin="anonymous"></script>
 <script>
 	var color="green";
+	var text="";
 	$( "#map" ).on( "click", function(e) {
 		var x = e.pageX - $(this).offset().left-10;
 		var y = e.pageY - $(this).offset().top-10;
@@ -96,6 +103,7 @@ p{
 		    href: '#',
 		    class: 'dot',
 		    style: "background:"+color+";left:"+x+";top:"+y+";",
+		    text: text,
 		  click: function(){
 
 		  }
@@ -117,6 +125,7 @@ p{
 
 	$( ".button" ).on( "click", function(e) {
 		color=$(this).data("color");
+		text=$(this).data("text");
 		console.log(color);
 		$(".button").removeClass("active");
 		$(this).addClass("active");

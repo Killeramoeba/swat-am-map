@@ -39,8 +39,8 @@ p{
 }
 #buttons{
 	margin:10px;
-	position:fixed;
-	left:866px;
+	/*position:fixed;
+	left:866px;*/
 }
 
 .button{
@@ -150,8 +150,8 @@ p{
 		<div class="button" data-color="atme" ><div class="atme"></div><span>A.T.M.E.</span></div>		
 		<div class="button" data-color="lad" ><div class="lad"></div><span>Lad</span></div>		
 		<div class="button" data-color="tor" ><div class="tor"></div><span>Tor</span></div>		
-		<a href="#" id="help" class="button-green">Help</a><br>
 		<a href="#" id="clear" class="button-green">Clear All Dots</a>
+		<a href="#" id="help" class="button-green">Help</a><br>
 		<div id="help-info">
 			<p>Select one then click anywhere on the map.</p>
 			<p>Click a dot to select it.</p>
@@ -220,7 +220,7 @@ p{
 		newE.focus();
 		newE.draggable({
         stop: function(event, ui) {            
-            console.log('New position: ', ui.position.left, ui.position.top);
+            
             var index = newE.data("index");
             if (dotsData[index]) {
                 dotsData[index].x = ui.position.left;  // Update the x position
@@ -243,7 +243,7 @@ p{
 			dotsData.push({ x, y, colorclass, text, index });
 			index++;
 			setCookie('dots', JSON.stringify(dotsData), 7);
-			console.log(getCookie("dots"));
+			
 		}
 		
 	}
@@ -275,7 +275,7 @@ p{
 
 	$(document).ready(function() {
 			dotsCookie = getCookie('dots');
-	    //console.log(dotsData);
+	    
 	    if (dotsCookie) {
 	    		dotsData = JSON.parse(dotsCookie);
 	        dotsData.forEach(dotData => {

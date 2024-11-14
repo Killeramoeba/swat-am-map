@@ -19,7 +19,7 @@ p{
 	color:white;
 }
 #map{
-	max-height:100vh;
+	height:800px;
 }
 #main-container{
 	display: flex;
@@ -55,7 +55,7 @@ p{
 	align-items: center;
 }
 .green{background: green;}
-.brown{background: #964B00;}
+.brown{background: #964B00;color:white;}
 .silver{background: #c0c0c0;}
 .blue{background: blue;}
 .red{background: red;}
@@ -93,7 +93,7 @@ p{
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js" integrity="sha256-AlTido85uXPlSyyaZNsjJXeCs07eSv3r43kyCVc8ChI=" crossorigin="anonymous"></script>
 <script>
-	var color="green";
+	var colorclass="green";
 	var text="";
 	$( "#map" ).on( "click", function(e) {
 		var x = e.pageX - $(this).offset().left-10;
@@ -101,8 +101,8 @@ p{
 	  	console.log( x,y );
 		var newE = $("<a/>", {
 		    href: '#',
-		    class: 'dot',
-		    style: "background:"+color+";left:"+x+";top:"+y+";",
+		    class: 'dot '+colorclass,
+		    style: "left:"+x+";top:"+y+";",
 		    text: text,
 		  click: function(){
 
@@ -124,9 +124,8 @@ p{
 	});
 
 	$( ".button" ).on( "click", function(e) {
-		color=$(this).data("color");
+		colorclass=$(this).data("color");
 		text=$(this).data("text");
-		console.log(color);
 		$(".button").removeClass("active");
 		$(this).addClass("active");
 	});

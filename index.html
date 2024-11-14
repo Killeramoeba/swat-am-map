@@ -1,0 +1,122 @@
+<style>
+body{
+	background: black;
+	margin:0;
+}
+span{
+	color:white;
+	padding-left:30px;
+}
+a{
+	overflow: hidden;
+	display: block;
+}
+p{
+	color:white;
+}
+#map{
+	max-height:100vh;
+}
+#main-container{
+	display: flex;
+	flex-direction: row;
+	
+}
+#map-container{
+	position: relative; 
+	z-index: 1;
+}
+#buttons{
+	margin:10px;
+}
+
+.button{
+	display:flex;
+	flex-direction:row;
+	cursor: pointer;
+	margin:1px;
+	padding:5px;
+	margin-bottom:10px;
+}
+.button.active{
+	outline:1px solid #ccc;
+}
+.button>div{
+	width:20px;
+	height:20px;
+	display:block;
+	border-radius:10px;
+
+}
+.green{background: green;}
+.brown{background: brown;}
+.silver{background: silver;}
+.blue{background: blue;}
+.red{background: red;}
+.white{background: white;}
+
+.dot{
+	width:20px;
+	height:20px;
+	border-radius:10px;
+	z-index:3;
+	position:absolute;
+}
+</style>
+<body>
+<div id="main-container">
+	<div id="map-container">
+	  <img id="map" src="swatafterterrain.7424b9ef.jpg"/>
+	</div>
+	<div id="buttons">
+		<p>Select one then click anywhere on the map.</p>
+		<div class="button active" data-color="green" ><div class="green"></div><span>Hazmat</span></div>
+		<div class="button" data-color="blue" ><div class="blue"></div><span>Blue Rad</span></div>
+		<div class="button" data-color="red" ><div class="red"></div><span>Red Rad</span></div>
+		<div class="button" data-color="brown" ><div class="brown"></div><span>Brown Boxes</span></div>
+		<div class="button" data-color="silver" ><div class="silver"></div><span>Silver Boxes</span></div>
+		<div class="button" data-color="white" ><div class="white"></div><span>Clear</span></div>
+		<p>Click a dot and press delete to remove.</p>
+		<p>Dots can be dragged.</p>
+	</div>
+</div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js" integrity="sha256-AlTido85uXPlSyyaZNsjJXeCs07eSv3r43kyCVc8ChI=" crossorigin="anonymous"></script>
+<script>
+	var color="green";
+	$( "#map" ).on( "click", function(e) {
+		var x = e.pageX - $(this).offset().left-10;
+		var y = e.pageY - $(this).offset().top-10;
+	  	console.log( x,y );
+		var newE = $("<a/>", {
+		    href: '#',
+		    class: 'dot',
+		    style: "background:"+color+";left:"+x+";top:"+y+";",
+		  click: function(){
+
+		  }
+		})
+
+		newE.appendTo("body");
+		newE.focus();
+		newE.draggable();
+	} );
+
+	$(document).keydown(function(event) {
+	  if (event.which === 46) { // Delete key code
+	    var focused = $(document.activeElement);
+	 	if(focused.hasClass("dot")){
+		    focused.remove();
+	    }
+	  }
+	});
+
+	$( ".button" ).on( "click", function(e) {
+		color=$(this).data("color");
+		console.log(color);
+		$(".button").removeClass("active");
+		$(this).addClass("active");
+	});
+</script>

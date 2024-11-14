@@ -182,6 +182,14 @@ p{
 		newE.appendTo("body");
 		newE.focus();
 		newE.draggable();
+
+		newE.on( "click", function(e) {
+			e.preventDefault();
+		});
+
+		newE.dblclick(function() {		    
+		    newE.remove();		    
+		});
 	} );
 
 	$(document).keydown(function(event) {
@@ -205,4 +213,6 @@ p{
 		e.preventDefault();
 		$("#help-info").toggle();
 	});
+
+
 </script>

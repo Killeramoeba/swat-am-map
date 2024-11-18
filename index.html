@@ -1,398 +1,468 @@
 <style>
-body{
+   body {
 	background: black;
-	margin:0;
-	color:white;
+	margin: 0;
+	color: white;
 }
-span{
-	color:white;
-	padding-left:30px;
+
+span {
+	color: white;
+	padding-left: 30px;
 }
-a{
-	color:white;
+
+a {
+	color: white;
 	overflow: hidden;
 	display: block;
 	text-decoration: none;
-	display:flex;
+	display: flex;
 	justify-content: center;
 	align-items: center;
 }
-p{
-	color:white;
+
+p {
+	color: white;
 }
-h3{
+
+h3 {
 	text-align: center;
 }
-#help,#clear{
-	margin-bottom:10px;
+
+#help,
+#clear {
+	margin-bottom: 10px;
 }
-#help-info{
+
+#help-info {
 	display: none;
 }
-#map{
-	height:800px;
-	margin-bottom:10px;
+
+#map {
+	height: 800px;
+	margin-bottom: 10px;
 }
-#main-container{
+
+#main-container {
 	display: flex;
 	flex-direction: row;
 	/*justify-content: center;
-	align-items: center;*/
-	
-}
-#map-container{
-	position: relative; 
-	z-index: 1;
-}
-.buttons{
-	margin:10px;
-	/*position:fixed;
-	left:866px;*/
+   align-items: center;*/
 }
 
-.button{
-	display:flex;
-	flex-direction:row;
+#map-container {
+	position: relative;
+	z-index: 1;
+}
+
+.buttons {
+	margin: 10px;
+	/*position:fixed;
+   left:866px;*/
+}
+
+.button {
+	display: flex;
+	flex-direction: row;
 	cursor: pointer;
-	margin:1px;
-	padding:5px;
-	margin-bottom:10px;
+	margin: 1px;
+	padding: 5px;
+	margin-bottom: 10px;
 }
-.button.active{
-	outline:1px solid #ccc;
+
+.button.active {
+	outline: 1px solid #ccc;
 }
-.button>div{
-	width:20px;
-	height:20px;
-	border-radius:10px;
-	display:flex;
+
+.button>div {
+	width: 20px;
+	height: 20px;
+	border-radius: 10px;
+	display: flex;
 	justify-content: center;
 	align-items: center;
 	background-position: center;
 	outline: white solid 1px;
 }
 
-.dot{
-	width:20px;
-	height:20px;
-	border-radius:10px;
-	z-index:3;
-	position:absolute;
+.dot {
+	width: 20px;
+	height: 20px;
+	border-radius: 10px;
+	z-index: 3;
+	position: absolute;
 	background-position: center;
 	outline: white solid 1px;
 	overflow: visible;
 }
-.dot:focus{
-	outline: white solid 2px;	
+
+.dot:focus {
+	outline: white solid 2px;
 }
+
 .button-green {
-  background-color: #04AA6D; /* Green */
-  border: none;
-  color: white;
-  padding: 10px 15px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  border-radius: 3px;
-  text-align: center;
-  margin-right:10px;
-  margin-left:10px;
+	background-color: #04AA6D;
+	/* Green */
+	border: none;
+	color: white;
+	padding: 10px 15px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	border-radius: 3px;
+	text-align: center;
+	margin-right: 10px;
+	margin-left: 10px;
 }
+
 /* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	display: none;
+	/* Hidden by default */
+	position: fixed;
+	/* Stay in place */
+	z-index: 1;
+	/* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%;
+	/* Full width */
+	height: 100%;
+	/* Full height */
+	overflow: auto;
+	/* Enable scroll if needed */
+	background-color: rgb(0, 0, 0);
+	/* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4);
+	/* Black w/ opacity */
 }
 
 /* Modal Content/Box */
-.modal{
+.modal {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-
 }
+
 .modal-content {
-  background-color: black;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: auto; /* Could be more or less, depending on screen size */
+	background-color: black;
+	margin: 15% auto;
+	/* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	width: auto;
+	/* Could be more or less, depending on screen size */
 }
 
 /* The Close Button */
 .close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-  text-decoration: none;
-  cursor: pointer;
+	text-decoration: none;
+	cursor: pointer;
 }
 
-
-
-
-.green{
+.green {
 	background: green;
-	background-image:url('item-hazmat.gif');
+	background-image: url('item-hazmat.gif');
 }
-.brown{
-	background: #964B00;color:white;
+
+.brown {
+	background: #964B00;
+	color: white;
 }
-.silver{
+
+.silver {
 	background: #c0c0c0;
 }
-.blue{
+
+.blue {
 	background: blue;
-	background-image:url('ability-fragb.jpg');
+	background-image: url('ability-fragb.jpg');
 }
-.red{
+
+.red {
 	background: red;
-	background-image:url('ability-fragr.png');
+	background-image: url('ability-fragr.png');
 }
-.white{
+
+.white {
 	background: white;
-	color:black;
+	color: black;
 }
-.shroom{
-	background-image:url('obj-shroom.gif');		
+
+.shroom {
+	background-image: url('obj-shroom.gif');
 	background-size: 170%;
 }
-.exo{
-	background-image:url('item-exosuit.gif');
+
+.exo {
+	background-image: url('item-exosuit.gif');
 }
-.plans{
-	background-image:url('item-plans.gif');
+
+.plans {
+	background-image: url('item-plans.gif');
 }
-.crate{
-	background-image:url('swat-metalcrate.jpg');
+
+.crate {
+	background-image: url('swat-metalcrate.jpg');
 }
-.lad{
-	background-image:url('ability-lad.gif');
+
+.lad {
+	background-image: url('ability-lad.gif');
 }
-.tor{
-	background-image:url('obj-reactor.gif');
+
+.tor {
+	background-image: url('obj-reactor.gif');
 	background-size: 190%;
 }
-.abm,.atme,.chrono{
-	outline:none;
+
+.abm,
+.atme,
+.chrono {
+	outline: none;
 }
 </style>
 <body>
-	<div id="main-container">
-		<div id="map-container">
-		  <img id="map" src="swatafterterrain.7424b9ef.jpg"/><br>
-		  <a href="#" id="clear" class="button-green">Clear All Dots</a>
-			<a href="#" id="help" class="button-green">Help</a>
-		</div>
-		<div class="buttons">
-			<h3>Crates</h3>
-			<div class="button active" data-color="crate" ><div></div><span>Silver Crates</span></div>		
-			<div class="button" data-color="brown" data-text="B" ><div>B</div><span>Brown Crates</span></div>
-			<div class="button" data-color="brown" data-text="I" ><div>I</div><span>Implants</span></div>
-			<div class="button" data-color="atme" data-text="ATME" ><div>ATME</div><span>ATME room</span></div>
-			<div class="button" data-color="chrono" data-text="Chrono" ><div>Chrono</div><span>Chrono</span></div>					
-		</div>
-			
-		<div class="buttons">
-			<h3>Items</h3>
-			
-			<div class="button" data-color="plans" ><div></div><span>Design Plans</span></div>
-			<div class="button" data-color="green" ><div></div><span>Hazmat</span></div>
-
-			<div class="button" data-color="shroom" ><div></div><span>Shroom</span></div>
-			<div class="button" data-color="exo" ><div></div><span>Exo</span></div>		
-			
-			<div class="button" data-color="lad" ><div></div><span>Lad</span></div>
-		</div>	
-		<div class="buttons">
-			<h3>Objectives</h3>
-			<div class="button" data-color="blue" ><div></div><span>Blue Rad</span></div>
-			<div class="button" data-color="red" ><div></div><span>Red Rad</span></div>
-			<div class="button" data-color="tor" ><div></div><span>Tor</span></div>		
-			<div class="button" data-color="abm" data-text="ABM" ><div>ABM</div><span>ABM</span></div>			
-		</div>
-
-		<div id="help-info" class="modal">
-			<div class="modal-content">
-				<span class="close">&times;</span>
-				<p>Select from the list then click anywhere on the map.</p>
-				<p>Click a dot to select it. Click off map to deselect. Dots can be dragged.</p>
-				<p>Press delete to remove. Alternatively, double click to remove.</p>
-				<p>Dots are saved to cookies.</p>
-			</div>
-		</div>
-
-
-	</div>
+   <div id="main-container">
+      <div id="map-container">
+         <img id="map" src="swatafterterrain.7424b9ef.jpg"/><br>
+         <a href="#" id="clear" class="button-green">Clear All Dots</a>
+         <a href="#" id="help" class="button-green">Help</a>
+      </div>
+      <div class="buttons">
+         <h3>Crates</h3>
+         <div class="button active" data-color="crate" >
+            <div></div>
+            <span>Silver Crates</span>
+         </div>
+         <div class="button" data-color="brown" data-text="B" >
+            <div>B</div>
+            <span>Brown Crates</span>
+         </div>
+         <div class="button" data-color="brown" data-text="I" >
+            <div>I</div>
+            <span>Implants</span>
+         </div>
+         <div class="button" data-color="atme" data-text="ATME" >
+            <div>ATME</div>
+            <span>ATME room</span>
+         </div>
+         <div class="button" data-color="chrono" data-text="Chrono" >
+            <div>Chrono</div>
+            <span>Chrono</span>
+         </div>
+      </div>
+      <div class="buttons">
+         <h3>Items</h3>
+         <div class="button" data-color="plans" >
+            <div></div>
+            <span>Design Plans</span>
+         </div>
+         <div class="button" data-color="green" >
+            <div></div>
+            <span>Hazmat</span>
+         </div>
+         <div class="button" data-color="shroom" >
+            <div></div>
+            <span>Shroom</span>
+         </div>
+         <div class="button" data-color="exo" >
+            <div></div>
+            <span>Exo</span>
+         </div>
+         <div class="button" data-color="lad" >
+            <div></div>
+            <span>Lad</span>
+         </div>
+      </div>
+      <div class="buttons">
+         <h3>Objectives</h3>
+         <div class="button" data-color="blue" >
+            <div></div>
+            <span>Blue Rad</span>
+         </div>
+         <div class="button" data-color="red" >
+            <div></div>
+            <span>Red Rad</span>
+         </div>
+         <div class="button" data-color="tor" >
+            <div></div>
+            <span>Tor</span>
+         </div>
+         <div class="button" data-color="abm" data-text="ABM" >
+            <div>ABM</div>
+            <span>ABM</span>
+         </div>
+      </div>
+      <div id="help-info" class="modal">
+         <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Select from the list then click anywhere on the map.</p>
+            <p>Click a dot to select it. Click off map to deselect. Dots can be dragged.</p>
+            <p>Press delete to remove. Alternatively, double click to remove.</p>
+            <p>Dots are saved to cookies.</p>
+         </div>
+      </div>
+   </div>
 </body>
-
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js" integrity="sha256-AlTido85uXPlSyyaZNsjJXeCs07eSv3r43kyCVc8ChI=" crossorigin="anonymous"></script>
 <script>
-	var dotsData = [];
-	var index=0;
-	var colorclass="crate";
-	var text="";
-
-	$( "#map" ).on( "click", function(e) {
-		if(colorclass){
-			e.preventDefault();
-			var x = e.pageX - $(this).offset().left-10;
-			var y = e.pageY - $(this).offset().top-10;
-			addDot(x,y,colorclass,text,true);
-		}
-	} );
-
-
-	//keyboard delete event
-	$(document).keydown(function(event) {
-	  if (event.which === 46) { // Delete key code
-	    var focused = $(document.activeElement);
-	 	if(focused.hasClass("dot")){
-		    removeDot(focused);
-	    }
-	  }
-	});
-
-	$( ".button" ).on( "click", function(e) {
-		e.preventDefault();
-		colorclass=$(this).data("color");
-		text=$(this).data("text");
-		$(".button").removeClass("active");
-		$(this).addClass("active");
-	});
-
-	$( "#help" ).on( "click", function(e) {
-		e.preventDefault();
-		$("#help-info").css("display","flex");
-	});
-
-	$( "#clear" ).on( "click", function(e) {
-		clearAll();
-	});
-
-	function addDot(x,y,colorclass,text,savecookie) {	  	
-		var newE = $("<a/>", {
-		    href: '#',
-		    class: 'dot '+colorclass,
-		    style: "left:"+x+";top:"+y+";",
-		    text: text,
-		    'data-index': index
-		})
-
-		newE.appendTo("body");
-		newE.focus();
-		newE.draggable({
-        stop: function(event, ui) {            
-            
-            var index = newE.data("index");
-            if (dotsData[index]) {
-                dotsData[index].x = ui.position.left;  // Update the x position
-                dotsData[index].y = ui.position.top;   // Update the y position
-            }
-            setCookie('dots', JSON.stringify(dotsData), 7);            
-        }
-    });
-
-		newE.on( "click", function(e) {
-			e.preventDefault();
-		});
-
-		newE.dblclick(function() {		    
-		    removeDot(newE);		    
-		});
-
-		//save cookie data
-		if(savecookie){
-			dotsData.push({ x, y, colorclass, text, index });
-			index++;
-			setCookie('dots', JSON.stringify(dotsData), 7);
-			
-		}
-		
-	}
-
-	function removeDot(d){
-    var index = d.data("index");    
-    dotsData.splice(index, 1);
-    setCookie('dots', JSON.stringify(dotsData), 7);
-    d.remove();
-	}
-
-	function setCookie(name, value, days) {
-	    const date = new Date();
-	    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-	    const expires = "expires=" + date.toUTCString();
-	    document.cookie = name + "=" + encodeURIComponent(value) + ";" + expires + ";path=/";
-	    
-	}
-
-	function getCookie(name) {
-	    const value = "; " + document.cookie;
-	    const parts = value.split("; " + name + "=");
-	    if (parts.length === 2) return decodeURIComponent(parts.pop().split(";").shift());
-	}
-
-	function deleteCookie(name) {
-      document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-	}
-
-	$(document).ready(function() {
-			dotsCookie = getCookie('dots');
-	    
-	    if (dotsCookie) {
-	    		dotsData = JSON.parse(dotsCookie);
-	        dotsData.forEach(dotData => {
-		        addDot(dotData.x, dotData.y, dotData.colorclass, dotData.text, false);
-		        index++;
-		    });
-	    }
-
-	    $('.button[data-color]').each(function() {
-        var colorClass = $(this).data('color'); // Get the value of data-color
-        $(this).find('div').attr('class', colorClass); // Set the class of the child div
-    	});
-	});
-
-	function clearAll(){
-		deleteCookie('dots');
-		$('.dot').each(function() {
-        $(this).remove();
-    });
-    dotsData = [];
-	}
-
-
-
-	// Get the modal
-var modal = document.getElementById("help-info");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
+   //initial data
+   var dotsData = [];
+   var index=0;
+   var colorclass="crate";
+   var text="";
+   
+   $( "#map" ).on( "click", function(e) {
+   	if(colorclass){
+   		e.preventDefault();
+   		var x = e.pageX - $(this).offset().left-10;
+   		var y = e.pageY - $(this).offset().top-10;
+   		addDot(x,y,colorclass,text,true);
+   	}
+   } );
+   
+   //keyboard delete event
+   $(document).keydown(function(event) {
+     if (event.which === 46) { // Delete key code
+       var focused = $(document.activeElement);
+    	if(focused.hasClass("dot")){
+   	    removeDot(focused);
+       }
+     }
+   });
+   
+   $( ".button" ).on( "click", function(e) {
+   	e.preventDefault();
+   	colorclass=$(this).data("color");
+   	text=$(this).data("text");
+   	$(".button").removeClass("active");
+   	$(this).addClass("active");
+   });
+   
+   $( "#help" ).on( "click", function(e) {
+   	e.preventDefault();
+   	$("#help-info").css("display","flex");
+   });
+   
+   $( "#clear" ).on( "click", function(e) {
+   	clearAll();
+   });
+   
+   function addDot(x,y,colorclass,text,savecookie) {	  	
+   	var newE = $("<a/>", {
+   	    href: '#',
+   	    class: 'dot '+colorclass,
+   	    style: "left:"+x+";top:"+y+";",
+   	    text: text,
+   	    'data-index': index
+   	})
+   
+   	newE.appendTo("body");
+   	newE.focus();
+   
+   	//add events to element
+   	newE.draggable({
+          stop: function(event, ui) {            
+              
+              var index = newE.data("index");
+              if (dotsData[index]) {
+                  dotsData[index].x = ui.position.left;  // Update the x position
+                  dotsData[index].y = ui.position.top;   // Update the y position
+              }
+              setCookie('dots', JSON.stringify(dotsData), 7);            
+          }
+      });
+   	newE.on( "click", function(e) {
+   		e.preventDefault();
+   	});
+   	newE.dblclick(function() {		    
+   	    removeDot(newE);		    
+   	});
+   
+   	//save cookie data
+   	if(savecookie){
+   		dotsData.push({ x, y, colorclass, text, index });
+   		index++;
+   		setCookie('dots', JSON.stringify(dotsData), 7);
+   		
+   	}
+   	
+   }
+   
+   function removeDot(d){
+      var index = d.data("index");    
+      dotsData.splice(index, 1);
+      setCookie('dots', JSON.stringify(dotsData), 7);
+      d.remove();
+   }
+   
+   function setCookie(name, value, days) {
+       const date = new Date();
+       date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+       const expires = "expires=" + date.toUTCString();
+       document.cookie = name + "=" + encodeURIComponent(value) + ";" + expires + ";path=/";   
+   }
+   
+   function getCookie(name) {
+       const value = "; " + document.cookie;
+       const parts = value.split("; " + name + "=");
+       if (parts.length === 2) return decodeURIComponent(parts.pop().split(";").shift());
+   }
+   
+   function deleteCookie(name) {
+        document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+   }
+   
+   $(document).ready(function() {
+   		dotsCookie = getCookie('dots');
+       if (dotsCookie) {
+       		dotsData = JSON.parse(dotsCookie);
+           dotsData.forEach(dotData => {
+   	        addDot(dotData.x, dotData.y, dotData.colorclass, dotData.text, false);
+   	        index++;
+   	    });
+       }
+   
+       $('.button[data-color]').each(function() {
+          var colorClass = $(this).data('color'); // Get the value of data-color
+          $(this).find('div').attr('class', colorClass); // Set the class of the child div
+      	});
+   });
+   
+   function clearAll(){
+   	deleteCookie('dots');
+   	$('.dot').each(function() {
+          $(this).remove();
+      });
+      dotsData = [];
+   }
+   
+   
+   
+   // Get the modal
+   var modal = document.getElementById("help-info");
+   
+   // Get the <span> element that closes the modal
+   var span = document.getElementsByClassName("close")[0];
+   
+   // When the user clicks on <span> (x), close the modal
+   span.onclick = function() {
     modal.style.display = "none";
-  }
-}
+   }
+   
+   // When the user clicks anywhere outside of the modal, close it
+   window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+   }
 </script>

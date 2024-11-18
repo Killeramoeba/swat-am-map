@@ -84,7 +84,7 @@ h3 {
 	background-size:contain;
 }
 
-.dot {
+.marker {
 	width: 20px;
 	height: 20px;
 	z-index: 3;
@@ -187,7 +187,6 @@ h3 {
 
 .shroom {
 	background-image: url('obj-shroom.gif');
-	background-size: 170%;
 }
 
 .exo {
@@ -208,7 +207,6 @@ h3 {
 
 .tor {
 	background-image: url('obj-reactor.gif');
-	background-size: 190%;
 }
 .clothing {
 	background-image: url('item-clothing.jpg');	
@@ -216,7 +214,7 @@ h3 {
 .abm {
 	background: url('abm.png');
 }
-.dot:focus {
+.marker:focus {
 	outline: white solid 2px;
 }
 
@@ -226,7 +224,7 @@ h3 {
    <div id="main-container">
       <div id="map-container">
          <img id="map" src="swatafterterrain.7424b9ef.jpg" width="866" height="800"/><br>
-         <a href="#" id="clear" class="button-green">Clear All Dots</a>
+         <a href="#" id="clear" class="button-green">Clear All Markers</a>
          <a href="#" id="help" class="button-green">Help</a>
       </div>
       <div class="buttons">
@@ -308,9 +306,9 @@ h3 {
          <div class="modal-content">
             <span class="close">&times;</span>
             <p>Select from the list then click anywhere on the map.</p>
-            <p>Click a dot to select it. Click off map to deselect. Dots can be dragged.</p>
+            <p>Click a marker to select it. Click off map to deselect. Markers can be dragged.</p>
             <p>Press delete to remove. Alternatively, double click to remove.</p>
-            <p>Dots are saved to cookies.</p>
+            <p>Markers are saved to cookies so you don't lose them if you accidentally refresh.</p>
          </div>
       </div>
    </div>
@@ -319,7 +317,7 @@ h3 {
 <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js" integrity="sha256-AlTido85uXPlSyyaZNsjJXeCs07eSv3r43kyCVc8ChI=" crossorigin="anonymous"></script>
 <script>
    //initial data
-   var dotsData = [];
+   var markerData = [];
    var index=0;
    var colorclass="crate";
    var text="";
@@ -329,7 +327,7 @@ h3 {
    		e.preventDefault();
    		var x = e.pageX - $(this).offset().left-10;
    		var y = e.pageY - $(this).offset().top-10;
-   		addDot(x,y,colorclass,text,true);
+   		addMarker(x,y,colorclass,text,true);
    	}
    } );
    
@@ -337,8 +335,8 @@ h3 {
    $(document).keydown(function(event) {
      if (event.which === 46) { // Delete key code
        var focused = $(document.activeElement);
-    	if(focused.hasClass("dot")){
-   	    removeDot(focused);
+    	if(focused.hasClass("marker")){
+   	    removeMarker(focused);
        }
      }
    });
@@ -360,10 +358,10 @@ h3 {
    	clearAll();
    });
    
-   function addDot(x,y,colorclass,text,savecookie) {	  	
+   function addMarker(x,y,colorclass,text,savecookie) {	  	
    	var newE = $("<a/>", {
    	    href: '#',
-   	    class: 'dot '+colorclass,
+   	    class: 'marker '+colorclass,
    	    style: "left:"+x+";top:"+y+";",
    	    text: text,
    	    'data-index': index
@@ -377,34 +375,34 @@ h3 {
           stop: function(event, ui) {            
               
               var index = newE.data("index");
-              if (dotsData[index]) {
-                  dotsData[index].x = ui.position.left;  // Update the x position
-                  dotsData[index].y = ui.position.top;   // Update the y position
+              if (markerData[index]) {
+                  markerData[index].x = ui.position.left;  // Update the x position
+                  markerData[index].y = ui.position.top;   // Update the y position
               }
-              setCookie('dots', JSON.stringify(dotsData), 7);            
+              setCookie('markers', JSON.stringify(markerData), 7);            
           }
       });
    	newE.on( "click", function(e) {
    		e.preventDefault();
    	});
    	newE.dblclick(function() {		    
-   	    removeDot(newE);		    
+   	    removeMarker(newE);		    
    	});
    
    	//save cookie data
    	if(savecookie){
-   		dotsData.push({ x, y, colorclass, text, index });
+   		markerData.push({ x, y, colorclass, text, index });
    		index++;
-   		setCookie('dots', JSON.stringify(dotsData), 7);
+   		setCookie('markers', JSON.stringify(markerData), 7);
    		
    	}
    	
    }
    
-   function removeDot(d){
+   function removeMarker(d){
       var index = d.data("index");    
-      dotsData.splice(index, 1);
-      setCookie('dots', JSON.stringify(dotsData), 7);
+      markerData.splice(index, 1);
+      setCookie('markers', JSON.stringify(markerData), 7);
       d.remove();
    }
    
@@ -426,11 +424,11 @@ h3 {
    }
    
    $(document).ready(function() {
-   		dotsCookie = getCookie('dots');
-       if (dotsCookie) {
-       		dotsData = JSON.parse(dotsCookie);
-           dotsData.forEach(dotData => {
-   	        addDot(dotData.x, dotData.y, dotData.colorclass, dotData.text, false);
+   		var markersCookie = getCookie('markers');
+        if (markersCookie) {
+       		markerData = JSON.parse(markersCookie);
+           markerData.forEach(thisMarkerData => {
+   	        addMarker(thisMarkerData.x, thisMarkerData.y, thisMarkerData.colorclass, thisMarkerData.text, false);
    	        index++;
    	    });
        }
@@ -442,11 +440,11 @@ h3 {
    });
    
    function clearAll(){
-   	deleteCookie('dots');
-   	$('.dot').each(function() {
+   	deleteCookie('markers');
+   	$('.marker').each(function() {
           $(this).remove();
       });
-      dotsData = [];
+      markerData = [];
    }
    
    

@@ -81,6 +81,7 @@ h3 {
 	align-items: center;
 	background-position: center;
 	outline: white solid 1px;
+	background-size:contain;
 }
 
 .dot {
@@ -91,9 +92,8 @@ h3 {
 	background-position: center;
 	outline: white solid 1px;
 	overflow: visible;
+	background-size:contain !important;
 }
-
-
 
 .button-green {
 	background-color: #04AA6D;
@@ -214,19 +214,8 @@ h3 {
 	background-image: url('item-clothing.jpg');	
 }
 .abm {
-	background: #c0c0c0;
+	background: url('abm.png');
 }
-.abm.dot {
-	background: none;
-  border-radius: 0;
-  width: auto;
-  height: auto;
-  padding: 2px;
-  outline:none;
-  font-size: .875rem;
-}
-
-
 .dot:focus {
 	outline: white solid 2px;
 }
@@ -310,7 +299,7 @@ h3 {
             <div></div>
             <span>Tor</span>
          </div>
-         <div class="button text-only" data-color="abm" data-text="ABM" >
+         <div class="button" data-color="abm" >
             <div></div>
             <span>ABM</span>
          </div>

@@ -1,5 +1,5 @@
 <style>
-   body {
+body {
 	background: black;
 	margin: 0;
 	color: white;
@@ -95,9 +95,7 @@ h3 {
 	overflow: visible;
 }
 
-.dot:focus {
-	outline: white solid 2px;
-}
+
 
 .button-green {
 	background-color: #04AA6D;
@@ -118,23 +116,15 @@ h3 {
 /* The Modal (background) */
 .modal {
 	display: none;
-	/* Hidden by default */
-	position: fixed;
-	/* Stay in place */
-	z-index: 1;
-	/* Sit on top */
+	position: fixed;	
+	z-index: 1;	
 	left: 0;
 	top: 0;
-	width: 100%;
-	/* Full width */
-	height: 100%;
-	/* Full height */
-	overflow: auto;
-	/* Enable scroll if needed */
-	background-color: rgb(0, 0, 0);
-	/* Fallback color */
-	background-color: rgba(0, 0, 0, 0.4);
-	/* Black w/ opacity */
+	width: 100%;	
+	height: 100%;	
+	overflow: auto;	
+	background-color: rgb(0, 0, 0);	
+	background-color: rgba(0, 0, 0, 0.4);	
 }
 
 /* Modal Content/Box */
@@ -222,17 +212,36 @@ h3 {
 	background-image: url('obj-reactor.gif');
 	background-size: 190%;
 }
-
+.clothing {
+	background-image: url('item-clothing.jpg');	
+}
 .abm,
 .atme,
 .chrono {
-	outline: none;
+	background: #c0c0c0;
 }
+.abm.dot,
+.atme.dot,
+.chrono.dot {
+	background: none;
+  border-radius: 0;
+  width: auto;
+  height: auto;
+  padding: 2px;
+  outline:none;
+}
+
+
+.dot:focus {
+	outline: white solid 2px;
+}
+
+
 </style>
 <body>
    <div id="main-container">
       <div id="map-container">
-         <img id="map" src="swatafterterrain.7424b9ef.jpg"/><br>
+         <img id="map" src="swatafterterrain.7424b9ef.jpg" width="866" height="800"/><br>
          <a href="#" id="clear" class="button-green">Clear All Dots</a>
          <a href="#" id="help" class="button-green">Help</a>
       </div>
@@ -246,33 +255,35 @@ h3 {
             <div>B</div>
             <span>Brown Crates</span>
          </div>
+         <div class="button" data-color="brown" data-text="C" >
+            <div>C</div>
+            <span>Consumable Crates</span>
+         </div>
          <div class="button" data-color="brown" data-text="I" >
             <div>I</div>
             <span>Implants</span>
          </div>
-         <div class="button" data-color="atme" data-text="ATME" >
-            <div>ATME</div>
+         <div class="button text-only" data-color="atme" data-text="ATME" >
+            <div></div>
             <span>ATME room</span>
          </div>
-         <div class="button" data-color="chrono" data-text="Chrono" >
-            <div>Chrono</div>
+         <div class="button text-only" data-color="chrono" data-text="Chrono" >
+            <div></div>
             <span>Chrono</span>
          </div>
       </div>
       <div class="buttons">
          <h3>Items</h3>
+          <div class="button" data-color="clothing" >
+            <div></div>
+            <span>Clothing</span>
+         </div>
+         
          <div class="button" data-color="plans" >
             <div></div>
             <span>Design Plans</span>
          </div>
-         <div class="button" data-color="green" >
-            <div></div>
-            <span>Hazmat</span>
-         </div>
-         <div class="button" data-color="shroom" >
-            <div></div>
-            <span>Shroom</span>
-         </div>
+         
          <div class="button" data-color="exo" >
             <div></div>
             <span>Exo</span>
@@ -284,6 +295,14 @@ h3 {
       </div>
       <div class="buttons">
          <h3>Objectives</h3>
+         <div class="button" data-color="green" >
+            <div></div>
+            <span>Hazmat</span>
+         </div>
+         <div class="button" data-color="shroom" >
+            <div></div>
+            <span>Shroom</span>
+         </div>
          <div class="button" data-color="blue" >
             <div></div>
             <span>Blue Rad</span>
@@ -296,8 +315,8 @@ h3 {
             <div></div>
             <span>Tor</span>
          </div>
-         <div class="button" data-color="abm" data-text="ABM" >
-            <div>ABM</div>
+         <div class="button text-only" data-color="abm" data-text="ABM" >
+            <div></div>
             <span>ABM</span>
          </div>
       </div>

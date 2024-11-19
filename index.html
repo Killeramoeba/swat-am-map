@@ -1,304 +1,306 @@
 <link rel="icon" href="favicon.1a74cee1.ico" type="image/x-icon">
 <style>
-body {
-	background: black;
-	margin: 0;
-	color: white;
-}
+   body {
+      background: black;
+      margin: 0;
+      color: white;
+   }
 
-span {
-	color: white;
-	padding-left: 30px;
-}
+   span {
+      color: white;
+      padding-left: 30px;
+   }
 
-a {
-	color: white;
-	overflow: hidden;
-	display: block;
-	text-decoration: none;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
+   a {
+      color: white;
+      overflow: hidden;
+      display: block;
+      text-decoration: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
 
-p {
-	color: white;
-}
+   p {
+      color: white;
+   }
 
-h3 {
-	text-align: center;
-}
+   h3 {
+      text-align: center;
+   }
 
-#help,
-#clear {
-	margin-bottom: 10px;
-}
+   #help,
+   #clear {
+      margin-bottom: 10px;
+   }
 
-#help-info {
-	display: none;
-}
+   #help-info {
+      display: none;
+   }
 
-#map {
-	height: 800px;
-	margin-bottom: 10px;
-}
+   #map {
+      height: 800px;
+      margin-bottom: 10px;
+   }
 
-#main-container {
-	display: flex;
-	flex-direction: row;
-	/*justify-content: center;
+   #main-container {
+      display: flex;
+      flex-direction: row;
+      /*justify-content: center;
    align-items: center;*/
-}
+   }
 
-#map-container {
-	position: relative;
-	z-index: 1;
-}
+   #map-container {
+      position: relative;
+      z-index: 1;
+   }
 
-.buttons {
-	margin: 10px;
-	/*position:fixed;
+   .buttons {
+      margin: 10px;
+      /*position:fixed;
    left:866px;*/
-}
+   }
 
-.button {
-	display: flex;
-	flex-direction: row;
-	cursor: pointer;
-	margin: 1px;
-	padding: 5px;
-	margin-bottom: 10px;
-}
+   .button {
+      display: flex;
+      flex-direction: row;
+      cursor: pointer;
+      margin: 1px;
+      padding: 5px;
+      margin-bottom: 10px;
+   }
 
-.button.active {
-	outline: 1px solid #ccc;
-}
+   .button.active {
+      outline: 1px solid #ccc;
+   }
 
-.button>div {
-	width: 20px;
-	height: 20px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-position: center;
-	outline: white solid 1px;
-	background-size:contain;
-}
+   .button>div {
+      width: 20px;
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-position: center;
+      outline: white solid 1px;
+      background-size: contain;
+   }
 
-.marker {
-	width: 20px;
-	height: 20px;
-	z-index: 3;
-	position: absolute;
-	background-position: center;
-	outline: white solid 1px;
-	overflow: visible;
-	background-size:contain !important;
-}
+   .marker {
+      width: 20px;
+      height: 20px;
+      z-index: 3;
+      position: absolute;
+      background-position: center;
+      outline: white solid 1px;
+      overflow: visible;
+      background-size: contain !important;
+   }
 
-.button-green {
-	background-color: #04AA6D;
-	/* Green */
-	border: none;
-	color: white;
-	padding: 10px 15px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-	border-radius: 3px;
-	text-align: center;
-	margin-right: 10px;
-	margin-left: 10px;
-}
+   .button-green {
+      background-color: #04AA6D;
+      /* Green */
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 3px;
+      text-align: center;
+      margin-right: 10px;
+      margin-left: 10px;
+   }
 
-/* The Modal (background) */
-.modal {
-	display: none;
-	position: fixed;	
-	z-index: 5;	
-	left: 0;
-	top: 0;
-	width: 100%;	
-	height: 100%;	
-	overflow: auto;	
-	background-color: rgb(0, 0, 0);	
-	background-color: rgba(0, 0, 0, 0.4);	
-}
+   /* The Modal (background) */
+   .modal {
+      display: none;
+      position: fixed;
+      z-index: 5;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0.4);
+   }
 
-/* Modal Content/Box */
-.modal {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
+   /* Modal Content/Box */
+   .modal {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
 
-.modal-content {
-	background-color: black;
-	margin: 15% auto;
-	/* 15% from the top and centered */
-	padding: 20px;
-	border: 1px solid #888;
-	width: auto;
-	/* Could be more or less, depending on screen size */
-}
+   .modal-content {
+      background-color: black;
+      margin: 15% auto;
+      /* 15% from the top and centered */
+      padding: 20px;
+      border: 1px solid #888;
+      width: auto;
+      /* Could be more or less, depending on screen size */
+   }
 
-/* The Close Button */
-.close {
-	color: #aaa;
-	float: right;
-	font-size: 28px;
-	font-weight: bold;
-}
+   /* The Close Button */
+   .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+   }
 
-.close:hover,
-.close:focus {
-	text-decoration: none;
-	cursor: pointer;
-}
+   .close:hover,
+   .close:focus {
+      text-decoration: none;
+      cursor: pointer;
+   }
 
-.green {
-	background: green;
-	background-image: url('item-hazmat.gif');
-}
+   .green {
+      background: green;
+      background-image: url('item-hazmat.gif');
+   }
 
-.brown {
-	background: #964B00;
-	color: white;
-}
+   .brown {
+      background: #964B00;
+      color: white;
+   }
 
-.silver {
-	background: #c0c0c0;
-}
+   .silver {
+      background: #c0c0c0;
+   }
 
-.blue {
-	background: blue;
-	background-image: url('ability-fragb.jpg');
-}
+   .blue {
+      background: blue;
+      background-image: url('ability-fragb.jpg');
+   }
 
-.red {
-	background: red;
-	background-image: url('ability-fragr.png');
-}
+   .red {
+      background: red;
+      background-image: url('ability-fragr.png');
+   }
 
-.white {
-	background: white;
-	color: black;
-}
+   .white {
+      background: white;
+      color: black;
+   }
 
-.shroom {
-	background-image: url('obj-shroom.gif');
-}
+   .shroom {
+      background-image: url('obj-shroom.gif');
+   }
 
-.exo {
-	background-image: url('item-exosuit.gif');
-}
+   .exo {
+      background-image: url('item-exosuit.gif');
+   }
 
-.plans {
-	background-image: url('item-plans.gif');
-}
+   .plans {
+      background-image: url('item-plans.gif');
+   }
 
-.crate {
-	background-image: url('swat-metalcrate.jpg');
-}
+   .crate {
+      background-image: url('swat-metalcrate.jpg');
+   }
 
-.lad {
-	background-image: url('ability-lad.gif');
-}
+   .lad {
+      background-image: url('ability-lad.gif');
+   }
 
-.tor {
-	background-image: url('obj-reactor.gif');
-}
-.clothing {
-	background-image: url('item-clothing.jpg');	
-}
-.abm {
-	background: url('abm.png');
-}
-.marker:focus {
-	outline: white solid 2px;
-}
+   .tor {
+      background-image: url('obj-reactor.gif');
+   }
 
+   .clothing {
+      background-image: url('item-clothing.jpg');
+   }
 
+   .abm {
+      background: url('abm.png');
+   }
+
+   .marker:focus {
+      outline: white solid 2px;
+   }
 </style>
+
 <body>
    <div id="main-container">
       <div id="map-container">
-         <img id="map" src="swatafterterrain.7424b9ef.jpg" width="866" height="800"/><br>
+         <img id="map" src="swatafterterrain.7424b9ef.jpg" width="866" height="800" /><br>
          <a href="#" id="clear" class="button-green">Clear All Markers</a>
          <a href="#" id="help" class="button-green">Help</a>
       </div>
       <div class="buttons">
          <h3>Crates</h3>
-         <div class="button active" data-color="crate" >
+         <div class="button active" data-color="crate">
             <div></div>
             <span>Silver Crates</span>
          </div>
-         <div class="button" data-color="brown" data-text="B" >
+         <div class="button" data-color="brown" data-text="B">
             <div>B</div>
             <span>Brown Crates</span>
          </div>
-         <div class="button" data-color="brown" data-text="C" >
+         <div class="button" data-color="brown" data-text="C">
             <div>C</div>
             <span>Consumables</span>
          </div>
-         <div class="button" data-color="brown" data-text="I" >
+         <div class="button" data-color="brown" data-text="I">
             <div>I</div>
             <span>Implants</span>
          </div>
-         <div class="button text-only" data-color="crate" data-text="A" >
+         <div class="button text-only" data-color="crate" data-text="A">
             <div>A</div>
             <span>ATME room</span>
          </div>
-         <div class="button text-only" data-color="crate" data-text="C" >
+         <div class="button text-only" data-color="crate" data-text="C">
             <div>C</div>
             <span>Chrono</span>
          </div>
       </div>
       <div class="buttons">
          <h3>Items</h3>
-          <div class="button" data-color="clothing" >
+         <div class="button" data-color="clothing">
             <div></div>
             <span>Clothing</span>
          </div>
-         
-         <div class="button" data-color="plans" >
+
+         <div class="button" data-color="plans">
             <div></div>
             <span>Design Plans</span>
          </div>
-         
-         <div class="button" data-color="exo" >
+
+         <div class="button" data-color="exo">
             <div></div>
             <span>Exo</span>
          </div>
-         <div class="button" data-color="lad" >
+         <div class="button" data-color="lad">
             <div></div>
             <span>Lad</span>
          </div>
       </div>
       <div class="buttons">
          <h3>Objectives</h3>
-         <div class="button" data-color="green" >
+         <div class="button" data-color="green">
             <div></div>
             <span>Hazmat</span>
          </div>
-         <div class="button" data-color="shroom" >
+         <div class="button" data-color="shroom">
             <div></div>
             <span>Shroom</span>
          </div>
-         <div class="button" data-color="blue" >
+         <div class="button" data-color="blue">
             <div></div>
             <span>Blue Rad</span>
          </div>
-         <div class="button" data-color="red" >
+         <div class="button" data-color="red">
             <div></div>
             <span>Red Rad</span>
          </div>
-         <div class="button" data-color="tor" >
+         <div class="button" data-color="tor">
             <div></div>
             <span>Tor</span>
          </div>
-         <div class="button" data-color="abm" >
+         <div class="button" data-color="abm">
             <div></div>
             <span>ABM</span>
          </div>
@@ -314,157 +316,209 @@ h3 {
       </div>
    </div>
 </body>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js" integrity="sha256-AlTido85uXPlSyyaZNsjJXeCs07eSv3r43kyCVc8ChI=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+   integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"
+   integrity="sha256-AlTido85uXPlSyyaZNsjJXeCs07eSv3r43kyCVc8ChI=" crossorigin="anonymous"></script>
+<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
 <script>
+
    //initial data
    var markerData = [];
-   var index=0;
-   var colorclass="crate";
-   var text="";
-   
-   $( "#map" ).on( "click", function(e) {
-   	if(colorclass){
-   		e.preventDefault();
-   		var x = e.pageX - $(this).offset().left-10;
-   		var y = e.pageY - $(this).offset().top-10;
-   		addMarker(x,y,colorclass,text,true);
-   	}
-   } );
-   
+   var index = 0;
+   var colorclass = "crate";
+   var text = "";
+
+   $("#map").on("click", function (e) {
+      if (colorclass) {
+         e.preventDefault();
+         var x = e.pageX - $(this).offset().left - 10;
+         var y = e.pageY - $(this).offset().top - 10;
+         addMarker(x, y, colorclass, text, true);
+      }
+   });
+
    //keyboard delete event
-   $(document).keydown(function(event) {
-     if (event.which === 46) { // Delete key code
-       var focused = $(document.activeElement);
-    	if(focused.hasClass("marker")){
-   	    removeMarker(focused);
-       }
-     }
+   $(document).keydown(function (event) {
+      if (event.which === 46) { // Delete key code
+         var focused = $(document.activeElement);
+         if (focused.hasClass("marker")) {
+            removeMarker(focused);
+         }
+      }
    });
-   
-   $( ".button" ).on( "click", function(e) {
-   	e.preventDefault();
-   	colorclass=$(this).data("color");
-   	text=$(this).data("text");
-   	$(".button").removeClass("active");
-   	$(this).addClass("active");
+
+   $(".button").on("click", function (e) {
+      e.preventDefault();
+      colorclass = $(this).data("color");
+      text = $(this).data("text");
+      $(".button").removeClass("active");
+      $(this).addClass("active");
    });
-   
-   $( "#help" ).on( "click", function(e) {
-   	e.preventDefault();
-   	$("#help-info").css("display","flex");
+
+   $("#help").on("click", function (e) {
+      e.preventDefault();
+      $("#help-info").css("display", "flex");
    });
-   
-   $( "#clear" ).on( "click", function(e) {
-   	clearAll();
+
+   $("#clear").on("click", function (e) {
+      clearAll();
    });
-   
-   function addMarker(x,y,colorclass,text,savecookie) {	  	
-   	var newE = $("<a/>", {
-   	    href: '#',
-   	    class: 'marker '+colorclass,
-   	    style: "left:"+x+";top:"+y+";",
-   	    text: text,
-   	    'data-index': index
-   	})
-   
-   	newE.appendTo("body");
-   	newE.focus();
-   
-   	//add events to element
-   	newE.draggable({
-          stop: function(event, ui) {            
-              
-              var index = newE.data("index");
-              if (markerData[index]) {
-                  markerData[index].x = ui.position.left;  // Update the x position
-                  markerData[index].y = ui.position.top;   // Update the y position
-              }
-              setCookie('markers', JSON.stringify(markerData), 7);            
-          }
+
+   function addMarker(x, y, colorclass, text, savecookie) {
+      var newE = $("<a/>", {
+         href: '#',
+         class: 'marker ' + colorclass,
+         style: "left:" + x + ";top:" + y + ";",
+         text: text,
+         'data-index': index
+      })
+
+      newE.appendTo("body");
+      newE.focus();
+
+      //add events to element
+      newE.draggable({
+         stop: function (event, ui) {
+
+            var index = newE.data("index");
+            if (markerData[index]) {
+               markerData[index].x = ui.position.left;  // Update the x position
+               markerData[index].y = ui.position.top;   // Update the y position
+               setCookie('markers', JSON.stringify(markerData), 7);
+               publishEvent('my-channel', 'my-event', markerData);
+            }
+
+
+         }
       });
-   	newE.on( "click", function(e) {
-   		e.preventDefault();
-   	});
-   	newE.dblclick(function() {		    
-   	    removeMarker(newE);		    
-   	});
-   
-   	//save cookie data
-   	if(savecookie){
-   		markerData.push({ x, y, colorclass, text, index });
-   		index++;
-   		setCookie('markers', JSON.stringify(markerData), 7);
-   		
-   	}
-   	
+      newE.on("click", function (e) {
+         e.preventDefault();
+      });
+      newE.dblclick(function () {
+         removeMarker(newE);
+      });
+
+      //save cookie data
+      if (savecookie) {
+         markerData.push({ x, y, colorclass, text, index });
+         index++;
+         setCookie('markers', JSON.stringify(markerData), 7);
+         publishEvent('my-channel', 'my-event', markerData);
+      }
+
    }
-   
-   function removeMarker(d){
-      var index = d.data("index");    
+
+   function removeMarker(d) {
+      var index = d.data("index");
       markerData.splice(index, 1);
       setCookie('markers', JSON.stringify(markerData), 7);
+      publishEvent('my-channel', 'my-event', markerData);
       d.remove();
    }
-   
+
    function setCookie(name, value, days) {
-       const date = new Date();
-       date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-       const expires = "expires=" + date.toUTCString();
-       document.cookie = name + "=" + encodeURIComponent(value) + ";" + expires + ";path=/";   
+      const date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      const expires = "expires=" + date.toUTCString();
+      document.cookie = name + "=" + encodeURIComponent(value) + ";" + expires + ";path=/";
    }
-   
+
    function getCookie(name) {
-       const value = "; " + document.cookie;
-       const parts = value.split("; " + name + "=");
-       if (parts.length === 2) return decodeURIComponent(parts.pop().split(";").shift());
+      const value = "; " + document.cookie;
+      const parts = value.split("; " + name + "=");
+      if (parts.length === 2) return decodeURIComponent(parts.pop().split(";").shift());
    }
-   
+
    function deleteCookie(name) {
-        document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
    }
-   
-   $(document).ready(function() {
-   		var markersCookie = getCookie('markers');
-        if (markersCookie) {
-       		markerData = JSON.parse(markersCookie);
-           markerData.forEach(thisMarkerData => {
-   	        addMarker(thisMarkerData.x, thisMarkerData.y, thisMarkerData.colorclass, thisMarkerData.text, false);
-   	        index++;
-   	    });
-       }
-   
-       $('.button[data-color]').each(function() {
-          var colorClass = $(this).data('color'); // Get the value of data-color
-          $(this).find('div').attr('class', colorClass); // Set the class of the child div
-      	});
+
+   $(document).ready(function () {
+      initMarkers();
    });
-   
-   function clearAll(){
-   	deleteCookie('markers');
-   	$('.marker').each(function() {
-          $(this).remove();
+
+   function initMarkers() {
+      var markersCookie = getCookie('markers');
+      if (markersCookie) {
+         markerData = JSON.parse(markersCookie);
+         markerData.forEach(thisMarkerData => {
+            addMarker(thisMarkerData.x, thisMarkerData.y, thisMarkerData.colorclass, thisMarkerData.text, false);
+            index++;
+         });
+      }
+
+      $('.button[data-color]').each(function () {
+         var colorClass = $(this).data('color'); // Get the value of data-color
+         $(this).find('div').attr('class', colorClass); // Set the class of the child div
+      });
+   }
+
+   function clearAll() {
+      deleteCookie('markers');
+      $('.marker').each(function () {
+         $(this).remove();
       });
       markerData = [];
+      index = 0;
    }
-   
-   
-   
+
+
+
    // Get the modal
    var modal = document.getElementById("help-info");
-   
+
    // Get the <span> element that closes the modal
    var span = document.getElementsByClassName("close")[0];
-   
+
    // When the user clicks on <span> (x), close the modal
-   span.onclick = function() {
-    modal.style.display = "none";
-   }
-   
-   // When the user clicks anywhere outside of the modal, close it
-   window.onclick = function(event) {
-    if (event.target == modal) {
+   span.onclick = function () {
       modal.style.display = "none";
-    }
    }
+
+   // When the user clicks anywhere outside of the modal, close it
+   window.onclick = function (event) {
+      if (event.target == modal) {
+         modal.style.display = "none";
+      }
+   }
+
+   //pusher
+   async function publishEvent(channel, event, data) {
+      try {
+         const response = await fetch('/api/publish', {
+            method: 'POST',
+            headers: {
+               'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ channel, event, data }),
+         });
+
+         const result = await response.json();
+         if (result.success) {
+            console.log('Event published successfully!');
+         } else {
+            console.error('Failed to publish event:', result.error);
+         }
+      } catch (err) {
+         console.error('Error:', err);
+      }
+   }
+
+   //pusher listener
+   const pusher = new Pusher('1a9bdce7a7af99367d6d', {
+      cluster: 'us2',
+   });
+
+   // Subscribe to a channel
+   const channel = pusher.subscribe('my-channel');
+
+   // Listen for events on the channel
+   channel.bind('my-event', function (data) {
+      console.log('Received data:', data);
+      clearAll();
+      setCookie('markers', JSON.stringify(data), 7);
+      initMarkers();
+   });
+
 </script>

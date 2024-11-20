@@ -334,7 +334,9 @@
          e.preventDefault();
          var x = e.pageX - $(this).offset().left - 10;
          var y = e.pageY - $(this).offset().top - 10;
-         addMarker(x, y, colorclass, text, true);
+         getTimestamp().then(timestamp => {
+            addMarker(x, y, colorclass, text, timestamp, true);
+         });
       }
    });
 
@@ -365,13 +367,15 @@
       clearAll();
    });
 
-   function addMarker(x, y, colorclass, text, savecookie) {
+   function addMarker(x, y, colorclass, text, timestamp, savecookie) {
+
       var newE = $("<a/>", {
          href: '#',
          class: 'marker ' + colorclass,
          style: "left:" + x + ";top:" + y + ";",
          text: text,
-         'data-index': index
+         'data-index': index,
+         'data-timestamp': timestamp
       })
 
       newE.appendTo("body");
@@ -401,7 +405,7 @@
 
       //save cookie data
       if (savecookie) {
-         markerData.push({ x, y, colorclass, text, index });
+         markerData.push({ x, y, colorclass, text, timestamp, index });
          index++;
          setCookie('markers', JSON.stringify(markerData), 7);
          publishEvent('my-channel', 'my-event', markerData);
@@ -443,7 +447,7 @@
       if (markersCookie) {
          markerData = JSON.parse(markersCookie);
          markerData.forEach(thisMarkerData => {
-            addMarker(thisMarkerData.x, thisMarkerData.y, thisMarkerData.colorclass, thisMarkerData.text, false);
+            addMarker(thisMarkerData.x, thisMarkerData.y, thisMarkerData.colorclass, thisMarkerData.text, thisMarkerData.timestamp, false);
             index++;
          });
       }
@@ -509,16 +513,21 @@
    const pusher = new Pusher('1a9bdce7a7af99367d6d', {
       cluster: 'us2',
    });
-
-   // Subscribe to a channel
    const channel = pusher.subscribe('my-channel');
-
-   // Listen for events on the channel
    channel.bind('my-event', function (data) {
       console.log('Received data:', data);
       clearAll();
       setCookie('markers', JSON.stringify(data), 7);
       initMarkers();
    });
+
+   //timestamps
+   async function getTimestamp() {
+      const response = await fetch('http://worldtimeapi.org/api/timezone/Etc/UTC');
+      const data = await response.json();
+      const utcDatetime = data.utc_datetime;
+      const dateString = new Date(utcDatetime).toISOString();
+      return dateString;
+   }
 
 </script>

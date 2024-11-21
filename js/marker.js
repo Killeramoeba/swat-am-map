@@ -26,7 +26,7 @@ $(document).keydown(function (event) {
     if (focused.hasClass("marker")) {
       getTimestamp().then((timestamp) => {
         updateMarker(markerData[i], i, timestamp);
-        publishEvent("my-channel", "my-event", markerData);
+        publishEvent(channelName, "my-event", markerData);
       });
     }
   }
@@ -54,7 +54,7 @@ function addMarker(x, y, colorclass, text, timestamp, push) {
         markerData[i].x = ui.position.left;
         markerData[i].y = ui.position.top;
         updateMarker(markerData[i], i, timestamp);
-        publishEvent("my-channel", "my-event", markerData);
+        publishEvent(channelName, "my-event", markerData);
       });
     },
   });
@@ -66,13 +66,13 @@ function addMarker(x, y, colorclass, text, timestamp, push) {
       var i = newE.data("index");
       markerData[i].colorclass = "hidden";
       updateMarker(markerData[i], i, timestamp);
-      publishEvent("my-channel", "my-event", markerData);
+      publishEvent(channelName, "my-event", markerData);
     });
   });
 
   if (push) {
     markerData.push({ x, y, colorclass, text, timestamp, index });
-    publishEvent("my-channel", "my-event", markerData);
+    publishEvent(channelName, "my-event", markerData);
   }
   index++;
 }

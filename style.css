@@ -32,6 +32,10 @@ h3 {
   margin-bottom: 10px;
 }
 
+#join-channel-button {
+  display: block;
+  margin: 20px 0;
+}
 #help-info {
   display: none;
 }

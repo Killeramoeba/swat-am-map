@@ -1,0 +1,225 @@
+body {
+  background: black;
+  margin: 0;
+  color: white;
+}
+
+span {
+  color: white;
+  padding-left: 30px;
+}
+
+a {
+  color: white;
+  overflow: hidden;
+  display: block;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+p {
+  color: white;
+}
+
+h3 {
+  text-align: center;
+}
+
+#help,
+#clear {
+  margin-bottom: 10px;
+}
+
+#help-info {
+  display: none;
+}
+
+#map {
+  height: 800px;
+  margin-bottom: 10px;
+}
+
+#main-container {
+  display: flex;
+  flex-direction: row;
+  /*justify-content: center;
+   align-items: center;*/
+}
+
+#map-container {
+  position: relative;
+  z-index: 1;
+}
+
+.buttons {
+  margin: 10px;
+  /*position:fixed;
+   left:866px;*/
+}
+
+.button {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  margin: 1px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.button.active {
+  outline: 1px solid #ccc;
+}
+
+.button > div {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-position: center;
+  outline: white solid 1px;
+  background-size: contain;
+}
+
+.marker {
+  width: 20px;
+  height: 20px;
+  z-index: 3;
+  position: absolute;
+  background-position: center;
+  outline: white solid 1px;
+  overflow: visible;
+  background-size: contain !important;
+}
+
+.button-green {
+  background-color: #04aa6d;
+  /* Green */
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 3px;
+  text-align: center;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 5;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Modal Content/Box */
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: black;
+  margin: 15% auto;
+  /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: auto;
+  /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.green {
+  background: green;
+  background-image: url("img/item-hazmat.gif");
+}
+
+.brown {
+  background: #964b00;
+  color: white;
+}
+
+.silver {
+  background: #c0c0c0;
+}
+
+.blue {
+  background: blue;
+  background-image: url("img/ability-fragb.jpg");
+}
+
+.red {
+  background: red;
+  background-image: url("img/ability-fragr.png");
+}
+
+.white {
+  background: white;
+  color: black;
+}
+
+.shroom {
+  background-image: url("img/obj-shroom.gif");
+}
+
+.exo {
+  background-image: url("img/item-exosuit.gif");
+}
+
+.plans {
+  background-image: url("img/item-plans.gif");
+}
+
+.crate {
+  background-image: url("img/swat-metalcrate.jpg");
+}
+
+.lad {
+  background-image: url("img/ability-lad.gif");
+}
+
+.tor {
+  background-image: url("img/obj-reactor.gif");
+}
+
+.clothing {
+  background-image: url("img/item-clothing.jpg");
+}
+
+.abm {
+  background: url("img/abm.png");
+}
+
+.marker:focus {
+  outline: white solid 2px;
+}
+
+.hidden {
+  display: none;
+}

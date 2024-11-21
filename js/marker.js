@@ -102,7 +102,7 @@ function clearAll() {
 
 //timestamps
 async function getTimestamp() {
-  const response = await fetch("http://worldtimeapi.org/api/timezone/Etc/UTC");
+  const response = await fetch("https://worldtimeapi.org/api/timezone/Etc/UTC");
   const data = await response.json();
   const utcDatetime = data.utc_datetime;
   const dateString = new Date(utcDatetime).toISOString();

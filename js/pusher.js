@@ -31,6 +31,7 @@ $("#join-channel-button").on("click", function () {
     channelName = input; // Set the valid channel name
     $("#channel-prompt").hide(); // Hide the prompt
     console.log("Channel name set to:", channelName); // Debugging
+    $("#channel-name-indicator").text(channelName);
 
     //pusher listener
     const pusher = new Pusher("1a9bdce7a7af99367d6d", {

@@ -27,9 +27,8 @@ h3 {
   text-align: center;
 }
 
-#help,
-#clear {
-  margin-bottom: 10px;
+#help {
+  margin: 10px;
 }
 
 #join-channel-button {

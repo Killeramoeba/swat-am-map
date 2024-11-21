@@ -94,12 +94,6 @@ function updateMarker(d, i, timestamp) {
   markerData[i] = d;
 }
 
-function clearAll() {
-  markerData = [];
-  index = 0;
-  publishEvent("my-channel", "my-event", markerData);
-}
-
 //timestamps
 async function getTimestamp() {
   const response = await fetch("https://worldtimeapi.org/api/timezone/Etc/UTC");

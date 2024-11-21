@@ -5,7 +5,6 @@
    <div id="main-container">
       <div id="map-container">
          <img id="map" src="img/swatafterterrain.jpg" width="866" height="800" /><br>
-         <a href="#" id="clear" class="button-green">Clear All Markers</a>
          <a href="#" id="help" class="button-green">Help</a>
       </div>
       <div class="buttons">
@@ -89,6 +88,9 @@
             <p>Select from the list then click anywhere on the map.</p>
             <p>Click a marker to select it. Click off map to deselect. Markers can be dragged.</p>
             <p>Press delete to remove a selected marker. Alternatively, double click a marker to remove.</p>
+            <p>When a marker is added, moved, or deleted, markers will be broadcasted to the other clients.</p>
+            <p>When the page is loaded, you won't see any markers that others have placed until an event is broadcasted.
+            </p>
          </div>
       </div>
    </div>

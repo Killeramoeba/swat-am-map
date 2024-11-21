@@ -3,10 +3,6 @@ $("#help").on("click", function (e) {
   $("#help-info").css("display", "flex");
 });
 
-$("#clear").on("click", function (e) {
-  clearAll();
-});
-
 // Get the modal
 var modal = document.getElementById("help-info");
 

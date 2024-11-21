@@ -16,6 +16,7 @@ $("#map").on("click", function (e) {
 });
 
 //keyboard delete event
+/*
 $(document).keydown(function (event) {
   if (event.which === 46) {
     // Delete key code
@@ -30,6 +31,7 @@ $(document).keydown(function (event) {
     }
   }
 });
+*/
 
 function addMarker(x, y, colorclass, text, timestamp, push) {
   var newE = $("<a/>", {

@@ -48,3 +48,13 @@ $(".context-menu-buttons .button").on("click", function (e) {
     colorclass = "context-menu";
   });
 });
+
+$("#context-menu-modal").on("click", function (event) {
+  // Only trigger if clicking the modal backdrop (not its children)
+  if (event.target.id === "context-menu-modal") {
+    $(this).hide();
+    $(".modal-options").show();
+    $(".context-menu-buttons").hide();
+    colorclass = "context-menu";
+  }
+});

@@ -59,13 +59,17 @@
       </div>
       <div class="buttons">
          <h3>Objectives</h3>
-         <div class="button" data-color="green">
+         <div class="button" data-color="haz">
             <div></div>
             <span>Hazmat</span>
          </div>
          <div class="button" data-color="shroom">
             <div></div>
             <span>Shroom</span>
+         </div>
+         <div class="button" data-color="green-rad">
+            <div></div>
+            <span>Rad</span>
          </div>
          <div class="button" data-color="blue">
             <div></div>
@@ -86,14 +90,18 @@
       </div>
       <div id="help-info" class="modal">
          <div class="modal-content">
-            <span class="close">&times;</span>
-            <h5>Placing Markers</h5>
-            <p>Select from the list then click anywhere on the map.</p>
-            <h5>Marker Functions</h5>
-            <p>Markers can be dragged. Double click a marker to remove.</p>
-            <h5>Marker Broadcasting</h5>
-            <p>When a marker is added, moved, or deleted, markers will be broadcasted to other clients.</p>
-            <p>When you join a channel, there won't be any markers until an event is broadcasted.</p>
+            <h3>Placing Markers</h3>
+            <p>Select a marker type from the list then click anywhere on the map to place a marker. You can deselect a
+               marker type by clicking on it again.</p>
+            <p>If you don't have a marker type selected, you can click on the map to open a context menu to place a
+               marker.</p>
+            <h3>Removing Markers</h3>
+            <p>Double click a marker to remove it.</p>
+            <h3>Moving Markers</h3>
+            <p>Click and drag a marker to move it.</p>
+            <h3>Marker Broadcasting</h3>
+            <p>When a marker is added, moved, or deleted, markers will be broadcasted to other clients. When you join a
+               channel, there won't be any markers until an event is broadcasted.</p>
          </div>
       </div>
       <div id="channel-prompt" class="modal">
@@ -161,13 +169,17 @@
             </div>
             <div class="buttons context-menu-buttons context-menu-objectives" style="display:none">
                <h3>Objectives</h3>
-               <div class="button" data-color="green">
+               <div class="button" data-color="haz">
                   <div></div>
                   <span>Hazmat</span>
                </div>
                <div class="button" data-color="shroom">
                   <div></div>
                   <span>Shroom</span>
+               </div>
+               <div class="button" data-color="green-rad">
+                  <div></div>
+                  <span>Rad</span>
                </div>
                <div class="button" data-color="blue">
                   <div></div>

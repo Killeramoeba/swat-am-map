@@ -141,24 +141,12 @@ h3 {
   padding: 20px;
   border: 1px solid #888;
   width: auto;
+  max-width: 600px;
+  text-align: center;
   /* Could be more or less, depending on screen size */
 }
 
-/* The Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.green {
+.haz {
   background: green;
   background-image: url("img/item-hazmat.gif");
 }
@@ -170,6 +158,11 @@ h3 {
 
 .silver {
   background: #c0c0c0;
+}
+
+.green-rad {
+  background: green;
+  background-image: url("img/ability-frag.gif");
 }
 
 .blue {

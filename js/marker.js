@@ -8,6 +8,8 @@ var y = 0;
 var timestamp = "";
 
 $("#map").on("click", function (e) {
+  if (!inputEnabled) return;
+
   if (colorclass) {
     e.preventDefault();
     x = e.pageX - $(this).offset().left - 10;

@@ -114,8 +114,8 @@ $("#join-channel-button").on("click", function () {
     });
 
     channel.bind("my-event", function (data) {
-      //console.log("Marker data:", markerData);
-      //console.log("Received data:", data);
+      console.log("Marker data:", markerData);
+      console.log("Received data:", data);
 
       for (let i = 0; i < markerData.length; i++) {
         if (data[i]?.timestamp > markerData[i]?.timestamp) {

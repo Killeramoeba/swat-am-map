@@ -6,7 +6,7 @@ $(".button").on("click", function (e) {
     text = "";
   } else {
     colorclass = $(this).data("color");
-    text = $(this).data("text");
+    text = $(this).data("text") || "";
     $(".button").removeClass("active");
     $(this).addClass("active");
   }
@@ -39,7 +39,7 @@ $(".modal-options #objectives").on("click", function (e) {
 $(".context-menu-buttons .button").on("click", function (e) {
   e.preventDefault;
   colorclass = $(this).data("color");
-  text = $(this).data("text");
+  text = $(this).data("text") || "";
   getTimestamp().then((timestamp) => {
     addMarker(x, y, colorclass, text, timestamp, true);
     $("#context-menu-modal").hide();

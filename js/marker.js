@@ -49,6 +49,7 @@ function addMarker(x, y, colorclass, text, timestamp, push) {
       style: "left:" + x + ";top:" + y + ";",
       text: text,
       "data-index": index,
+      "data-text": text,
       "data-timestamp": timestamp,
     });
 
@@ -98,8 +99,9 @@ function updateMarker(d, i, timestamp) {
   marker.attr({
     "data-text": d.text,
     "data-timestamp": timestamp,
+    class: "marker " + d.colorclass + " ui-draggable ui-draggable-handle",
   });
-  marker.addClass(d.colorclass);
+  marker.text(d.text);
   markerData[i] = d;
 }
 

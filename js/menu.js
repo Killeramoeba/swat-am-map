@@ -21,23 +21,23 @@ $(document).ready(function () {
 
 $(".context-menu-buttons .button").off("click");
 $(".modal-options #crates").on("click", function (e) {
-  e.preventDefault;
+  e.preventDefault();
   $(".modal-options").hide();
   $(".context-menu-crates").show();
 });
 $(".modal-options #items").on("click", function (e) {
-  e.preventDefault;
+  e.preventDefault();
   $(".modal-options").hide();
   $(".context-menu-items").show();
 });
 $(".modal-options #objectives").on("click", function (e) {
-  e.preventDefault;
+  e.preventDefault();
   $(".modal-options").hide();
   $(".context-menu-objectives").show();
 });
 
 $(".context-menu-buttons .button").on("click", function (e) {
-  e.preventDefault;
+  e.preventDefault();
   colorclass = $(this).data("color");
   text = $(this).data("text") || "";
   getTimestamp().then((timestamp) => {
@@ -56,5 +56,17 @@ $("#context-menu-modal").on("click", function (event) {
     $(".modal-options").show();
     $(".context-menu-buttons").hide();
     colorclass = "context-menu";
+  }
+});
+
+$("#help").on("click", function (e) {
+  e.preventDefault();
+  $("#help-info").css("display", "flex");
+});
+
+$("#help-info").on("click", function (event) {
+  // Only trigger if clicking the modal backdrop (not its children)
+  if (event.target.id === "help-info") {
+    $(this).hide();
   }
 });

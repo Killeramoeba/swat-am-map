@@ -226,3 +226,13 @@ h3 {
 .hidden {
   display: none;
 }
+
+.context-menu {
+  position: absolute;
+  margin: 0;
+}
+.modal-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

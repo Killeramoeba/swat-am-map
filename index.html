@@ -1,4 +1,4 @@
-<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" href="img/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="style.css">
 
 <body>
@@ -13,7 +13,7 @@
       </div>
       <div class="buttons">
          <h3>Crates</h3>
-         <div class="button active" data-color="crate">
+         <div class="button" data-color="crate">
             <div></div>
             <span>Silver Crates</span>
          </div>
@@ -44,12 +44,10 @@
             <div></div>
             <span>Clothing</span>
          </div>
-
          <div class="button" data-color="plans">
             <div></div>
             <span>Design Plans</span>
          </div>
-
          <div class="button" data-color="exo">
             <div></div>
             <span>Exo</span>
@@ -95,9 +93,7 @@
             <p>Markers can be dragged. Double click a marker to remove.</p>
             <h5>Marker Broadcasting</h5>
             <p>When a marker is added, moved, or deleted, markers will be broadcasted to other clients.</p>
-            <p>When the page is loaded, there won't be any markers until an event is broadcasted.</p>
-            <p>If you want to collaborate, and your teammates have already placed markers, wait until they broadcast an
-               event or you may overwrite some of their markers.</p>
+            <p>When you join a channel, there won't be any markers until an event is broadcasted.</p>
          </div>
       </div>
       <div id="channel-prompt" class="modal">
@@ -108,6 +104,88 @@
             <p id="error-message" style="color: red; display: none;">Invalid channel name. Please enter a single
                lowercase word (max
                10 characters).</p>
+         </div>
+      </div>
+      <div id="context-menu-modal" class="modal" style="display:none;">
+         <div class="modal-content  context-menu">
+            <div class="modal-options">
+               <a href="#" id="crates" class="button-green">Crates</a>
+               <a href="#" id="items" class="button-green">Items</a>
+               <a href="#" id="objectives" class="button-green">Objectives</a>
+            </div>
+            <div class="buttons context-menu-buttons context-menu-crates" style="display:none">
+               <h3>Crates</h3>
+               <div class="button" data-color="crate">
+                  <div></div>
+                  <span>Silver Crates</span>
+               </div>
+               <div class="button" data-color="brown" data-text="B">
+                  <div>B</div>
+                  <span>Brown Crates</span>
+               </div>
+               <div class="button" data-color="brown" data-text="C">
+                  <div>C</div>
+                  <span>Consumables</span>
+               </div>
+               <div class="button" data-color="brown" data-text="I">
+                  <div>I</div>
+                  <span>Implants</span>
+               </div>
+               <div class="button text-only" data-color="crate" data-text="A">
+                  <div>A</div>
+                  <span>ATME room</span>
+               </div>
+               <div class="button text-only" data-color="crate" data-text="C">
+                  <div>C</div>
+                  <span>Chrono</span>
+               </div>
+            </div>
+            <div class="buttons context-menu-buttons context-menu-items" style="display:none">
+               <h3>Items</h3>
+               <div class="button" data-color="clothing">
+                  <div></div>
+                  <span>Clothing</span>
+               </div>
+               <div class="button" data-color="plans">
+                  <div></div>
+                  <span>Design Plans</span>
+               </div>
+               <div class="button" data-color="exo">
+                  <div></div>
+                  <span>Exo</span>
+               </div>
+               <div class="button" data-color="lad">
+                  <div></div>
+                  <span>Lad</span>
+               </div>
+            </div>
+            <div class="buttons context-menu-buttons context-menu-objectives" style="display:none">
+               <h3>Objectives</h3>
+               <div class="button" data-color="green">
+                  <div></div>
+                  <span>Hazmat</span>
+               </div>
+               <div class="button" data-color="shroom">
+                  <div></div>
+                  <span>Shroom</span>
+               </div>
+               <div class="button" data-color="blue">
+                  <div></div>
+                  <span>Blue Rad</span>
+               </div>
+               <div class="button" data-color="red">
+                  <div></div>
+                  <span>Red Rad</span>
+               </div>
+               <div class="button" data-color="tor">
+                  <div></div>
+                  <span>Tor</span>
+               </div>
+               <div class="button" data-color="abm">
+                  <div></div>
+                  <span>ABM</span>
+               </div>
+            </div>
          </div>
       </div>
    </div>

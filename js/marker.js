@@ -1,14 +1,17 @@
 //initial data
 var markerData = [];
 var index = 0;
-var colorclass = "crate";
+var colorclass = "context-menu";
 var text = "";
+var x = 0;
+var y = 0;
+var timestamp = "";
 
 $("#map").on("click", function (e) {
   if (colorclass) {
     e.preventDefault();
-    var x = e.pageX - $(this).offset().left - 10;
-    var y = e.pageY - $(this).offset().top - 10;
+    x = e.pageX - $(this).offset().left - 10;
+    y = e.pageY - $(this).offset().top - 10;
     getTimestamp().then((timestamp) => {
       addMarker(x, y, colorclass, text, timestamp, true);
     });
@@ -34,53 +37,56 @@ $(document).keydown(function (event) {
 */
 
 function addMarker(x, y, colorclass, text, timestamp, push) {
-  var newE = $("<a/>", {
-    href: "#",
-    class: "marker " + colorclass,
-    style: "left:" + x + ";top:" + y + ";",
-    text: text,
-    "data-index": index,
-    "data-timestamp": timestamp,
-  });
+  if (colorclass == "context-menu") {
+    contextMenu = $(".context-menu");
+    $("#context-menu-modal").show();
+  } else {
+    var newE = $("<a/>", {
+      href: "#",
+      class: "marker " + colorclass,
+      style: "left:" + x + ";top:" + y + ";",
+      text: text,
+      "data-index": index,
+      "data-timestamp": timestamp,
+    });
 
-  newE.appendTo("body");
-  newE.focus();
+    newE.appendTo("body");
+    newE.focus();
 
-  //add events to element
-  newE.draggable({
-    stop: function (event, ui) {
+    //add events to element
+    newE.draggable({
+      stop: function (event, ui) {
+        getTimestamp().then((timestamp) => {
+          var i = newE.data("index");
+          markerData[i].x = ui.position.left;
+          markerData[i].y = ui.position.top;
+          updateMarker(markerData[i], i, timestamp);
+          publishEvent(channelName, "my-event", markerData);
+        });
+      },
+    });
+    newE.on("click", function (e) {
+      e.preventDefault();
+    });
+    newE.dblclick(function () {
       getTimestamp().then((timestamp) => {
         var i = newE.data("index");
-        markerData[i].x = ui.position.left;
-        markerData[i].y = ui.position.top;
+        markerData[i].colorclass = "hidden";
         updateMarker(markerData[i], i, timestamp);
         publishEvent(channelName, "my-event", markerData);
       });
-    },
-  });
-  newE.on("click", function (e) {
-    e.preventDefault();
-  });
-  newE.dblclick(function () {
-    getTimestamp().then((timestamp) => {
-      var i = newE.data("index");
-      markerData[i].colorclass = "hidden";
-      updateMarker(markerData[i], i, timestamp);
-      publishEvent(channelName, "my-event", markerData);
     });
-  });
 
-  if (push) {
-    markerData.push({ x, y, colorclass, text, timestamp, index });
-    publishEvent(channelName, "my-event", markerData);
+    if (push) {
+      markerData.push({ x, y, colorclass, text, timestamp, index });
+      publishEvent(channelName, "my-event", markerData);
+    }
+    index++;
   }
-  index++;
 }
 
 //updated marker data, index
 function updateMarker(d, i, timestamp) {
-  console.log("updateMarker");
-
   d.timestamp = timestamp;
   var marker = $('.marker[data-index="' + i + '"]');
   marker.css({
@@ -92,15 +98,22 @@ function updateMarker(d, i, timestamp) {
     "data-timestamp": timestamp,
   });
   marker.addClass(d.colorclass);
-  console.log(d.colorclass);
   markerData[i] = d;
 }
 
 //timestamps
 async function getTimestamp() {
-  const response = await fetch("https://worldtimeapi.org/api/timezone/Etc/UTC");
-  const data = await response.json();
-  const utcDatetime = data.utc_datetime;
-  const dateString = new Date(utcDatetime).toISOString();
-  return dateString;
+  try {
+    const response = await fetch(
+      "https://worldtimeapi.org/api/timezone/Etc/UTC"
+    );
+    const data = await response.json();
+    const utcDatetime = data.utc_datetime;
+    const dateString = new Date(utcDatetime).toISOString();
+    timestamp = dateString;
+    return dateString;
+  } catch (error) {
+    console.error("Error fetching timestamp:", error);
+    return timestamp;
+  }
 }
